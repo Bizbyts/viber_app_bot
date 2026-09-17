@@ -169,3 +169,4 @@ Heroku, Render, Railway, Fly.io, or similar platforms. Just:
   for detail results; you can extend this to Viber's Rich Media (carousel)
   messages for the multi-result picker instead of a numbered text list.
 # viber_app_bot
+# viber_app_bot
