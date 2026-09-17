@@ -46,11 +46,12 @@ class Config:
 
     @classmethod
     def validate(cls):
-        missing = []
         if not cls.VIBER_AUTH_TOKEN:
-            missing.append("VIBER_AUTH_TOKEN")
-        if missing:
-            raise RuntimeError(
-                f"Missing required environment variables: {', '.join(missing)}. "
-                f"Copy .env.example to .env and fill in the values."
+            # Don't crash if running without a token; allow running in demo/web mode
+            from logger import log
+            log.warning(
+                "VIBER_AUTH_TOKEN is not set. Bot will run in demo/standalone mode. "
+                "Set VIBER_AUTH_TOKEN in your environment when you obtain your Viber partner credentials."
             )
+            return False
+        return True

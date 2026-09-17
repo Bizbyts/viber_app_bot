@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AppInfoBot — Viber App Information Bot & Web Hub</title>
+  <meta name="description" content="Instant real-time app lookup for Apple App Store and Google Play Store with live Viber bot simulator and web explorer.">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AppInfoBot — Viber App Information Bot">
+  <meta property="og:description" content="Instant mobile app ratings, size, price, and store links for iOS and Android with interactive Viber simulator.">
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="https://i.imgur.com/9vlBxdt.png" type="image/png">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand" id="brand-link">
+        <div class="brand-icon">🤖</div>
+        <div class="brand-name">AppInfo<span>Bot</span></div>
+      </a>
+      <div class="header-nav">
+        <div class="badge-live" id="status-indicator">
+          <span class="pulse-dot"></span>
+          <span>Netlify Live Ready</span>
+        </div>
+        <a href="https://github.com/Bizbyts/viber_app_bot" target="_blank" rel="noopener noreferrer" class="github-btn" id="github-link">
+          <span>GitHub</span> ↗
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="container">
+    <section class="hero">
+      <div class="hero-pill">✨ Powered by Apple App Store & Google Play APIs</div>
+      <h1 class="hero-title">Mobile App Intelligence at Your Fingertips</h1>
+      <p class="hero-desc">
+        Lookup ratings, pricing, file sizes, version history, and store links instantly.
+        Test the live search or chat with the Viber Bot simulator below!
+      </p>
+
+      <!-- Navigation Tabs -->
+      <nav class="tabs-nav" aria-label="Main Navigation">
+        <button class="tab-button active" data-tab="explorer" id="tab-btn-explorer">
+          <span>🔍</span> App Explorer
+        </button>
+        <button class="tab-button" data-tab="simulator" id="tab-btn-simulator">
+          <span>💬</span> Viber Bot Simulator
+        </button>
+        <button class="tab-button" data-tab="setup" id="tab-btn-setup">
+          <span>⚙️</span> Setup & Webhook
+        </button>
+      </nav>
+    </section>
+
+    <!-- Tab 1: App Explorer -->
+    <section id="tab-explorer" class="tab-pane active" aria-labelledby="tab-btn-explorer">
+      <!-- Search Bar -->
+      <div class="search-container">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="search-input" 
+            class="search-input" 
+            placeholder="Search an app name (e.g. Spotify, Notion, Subway Surfers)..."
+            value="Spotify"
+            autocomplete="off"
+          />
+          <button id="search-btn" class="search-btn">Search</button>
+        </div>
+      </div>
+
+      <!-- Quick Search Tag Chips -->
+      <div class="quick-tags" id="quick-tags-container">
+        <span class="quick-tag-label">Trending:</span>
+        <button class="tag-btn" data-query="Spotify">Spotify</button>
+        <button class="tag-btn" data-query="Minecraft">Minecraft</button>
+        <button class="tag-btn" data-query="Duolingo">Duolingo</button>
+        <button class="tag-btn" data-query="WhatsApp">WhatsApp</button>
+        <button class="tag-btn" data-query="Slack">Slack</button>
+        <button class="tag-btn" data-query="Telegram">Telegram</button>
+        <button class="tag-btn" data-query="Instagram">Instagram</button>
+      </div>
+
+      <!-- Search State / Status Box -->
+      <div id="search-state" class="state-box" style="display: none;"></div>
+
+      <!-- Results Header -->
+      <div class="results-header">
+        <h2 style="font-size: 1.25rem; font-weight: 700;">Store Catalog Results</h2>
+        <span id="results-count" class="results-count">Loading results...</span>
+      </div>
+
+      <!-- Cards Grid -->
+      <div id="cards-grid" class="cards-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- Tab 2: Viber Bot Simulator -->
+    <section id="tab-simulator" class="tab-pane" aria-labelledby="tab-btn-simulator">
+      <div class="simulator-layout">
+        
+        <!-- Smartphone Mockup -->
+        <div class="phone-mockup" id="phone-mockup-frame">
+          <div class="phone-speaker"></div>
+          
+          <div class="viber-header">
+            <div class="bot-avatar-wrap">
+              <div class="bot-avatar-img">🤖</div>
+              <span class="online-dot"></span>
+            </div>
+            <div class="viber-bot-info">
+              <div class="viber-bot-name">AppInfoBot</div>
+              <div class="viber-bot-sub">Online • Viber Bot Verified</div>
+            </div>
+          </div>
+
+          <div class="chat-history" id="chat-history">
+            <div class="chat-bubble bubble-bot">
+👋 Hi! I'm AppInfoBot.
+
+Send me:
+• An app name (e.g. "Spotify")
+• An App Store link
+• A Google Play link
+
+…and I'll pull up detailed information about it.
+            </div>
+          </div>
+
+          <div class="phone-input-bar">
+            <input 
+              type="text" 
+              id="chat-input" 
+              class="chat-input" 
+              placeholder="Type message to bot..."
+              autocomplete="off"
+            />
+            <button id="chat-send-btn" class="chat-send-btn" title="Send message">➤</button>
+          </div>
+        </div>
+
+        <!-- Simulator Instructions & Presets -->
+        <div class="sim-controls">
+          <h2 class="sim-heading">Real-Time Viber Bot Emulation</h2>
+          <p class="sim-desc">
+            This interactive simulator reproduces the exact responses that your Python Viber Bot 
+            (<code>formatter.py</code>, <code>parser.py</code>, and <code>viber_client.py</code>) delivers to Viber users.
+          </p>
+
+          <div class="sim-presets-title">Quick Test Actions</div>
+          <div class="sim-preset-grid">
+            <button class="preset-btn" data-prompt="/start">
+              <strong>/start</strong>
+              <span>Greeting & instructions</span>
+            </button>
+            <button class="preset-btn" data-prompt="/help">
+              <strong>/help</strong>
+              <span>Commands & usage syntax</span>
+            </button>
+            <button class="preset-btn" data-prompt="Spotify">
+              <strong>"Spotify"</strong>
+              <span>Disambiguation selection</span>
+            </button>
+            <button class="preset-btn" data-prompt="Minecraft">
+              <strong>"Minecraft"</strong>
+              <span>Lookup ratings & price</span>
+            </button>
+            <button class="preset-btn" data-prompt="1">
+              <strong>Reply "1"</strong>
+              <span>Pick first disambiguation item</span>
+            </button>
+            <button class="preset-btn" data-prompt="Duolingo">
+              <strong>"Duolingo"</strong>
+              <span>Language learning app</span>
+            </button>
+          </div>
+
+          <div style="background: rgba(0,0,0,0.2); border-radius: var(--radius-md); padding: 16px; border: 1px solid var(--border-card);">
+            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; color: #a89eff;">
+              💡 No Viber Token Required for Web Demo
+            </div>
+            <p style="font-size: 0.84rem; color: var(--text-muted); margin: 0;">
+              Since you don't have a Viber partner token yet, this web interface lets anyone test the complete search logic, emoji formatting, and app metadata extraction live on Netlify!
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Tab 3: Setup Hub & Webhook -->
+    <section id="tab-setup" class="tab-pane" aria-labelledby="tab-btn-setup">
+      <div class="guide-card">
+        <h2 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 12px;">
+          How to Connect Your Real Viber Bot (When Ready)
+        </h2>
+        <p style="color: var(--text-muted); margin-bottom: 28px;">
+          Whenever you want to link a real Viber chatbot account, follow these 3 simple steps:
+        </p>
+
+        <div class="guide-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Get your Free Viber Bot Auth Token</div>
+            <p class="step-text">
+              Visit <a href="https://partners.viber.com/" target="_blank" style="color:var(--primary);">partners.viber.com</a>, 
+              log in with your phone number, click <strong>Create Bot Account</strong>, and copy your <strong>Authentication Token</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Add Environment Variables on Netlify</div>
+            <p class="step-text">
+              In your Netlify Site dashboard, navigate to <strong>Site configuration</strong> ➔ <strong>Environment variables</strong>, and add:
+            </p>
+            <div class="code-box">
+              <span>VIBER_AUTH_TOKEN=your_token_from_partners_viber_com</span>
+              <button class="copy-btn" onclick="copyText(this, 'VIBER_AUTH_TOKEN=your_token_from_partners_viber_com')">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Your Webhook URL</div>
+            <p class="step-text">
+              Netlify redirects <code>/webhook</code> straight to your serverless function:
+            </p>
+            <div class="code-box">
+              <span id="webhook-display-url">https://your-site.netlify.app/webhook</span>
+              <button class="copy-btn" onclick="copyText(this, window.location.origin + '/webhook')">Copy Current Origin</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        AppInfoBot • Created for <a href="https://github.com/Bizbyts/viber_app_bot" target="_blank">Bizbyts/viber_app_bot</a> • Ready for Netlify & Cloud Deployment
+      </p>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript -->
+  <script src="js/app.js"></script>
+</body>
+</html>
