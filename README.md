@@ -168,3 +168,4 @@ Heroku, Render, Railway, Fly.io, or similar platforms. Just:
 - **Rich Viber messages**: `viber_client.py` currently sends `PictureMessage`
   for detail results; you can extend this to Viber's Rich Media (carousel)
   messages for the multi-result picker instead of a numbered text list.
+# viber_app_bot
