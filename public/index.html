@@ -91,8 +91,14 @@
         <button class="tag-btn" data-query="Duolingo">Duolingo</button>
         <button class="tag-btn" data-query="WhatsApp">WhatsApp</button>
         <button class="tag-btn" data-query="Slack">Slack</button>
-        <button class="tag-btn" data-query="Telegram">Telegram</button>
         <button class="tag-btn" data-query="Instagram">Instagram</button>
+      </div>
+
+      <!-- Store Filter Buttons -->
+      <div class="store-filters" id="store-filters-container">
+        <button class="store-filter-btn active" data-filter="all" id="filter-all">All Stores (🍎 + 🤖)</button>
+        <button class="store-filter-btn" data-filter="apple" id="filter-apple">🍎 App Store</button>
+        <button class="store-filter-btn" data-filter="google" id="filter-google">🤖 Google Play</button>
       </div>
 
       <!-- Search State / Status Box -->
@@ -174,19 +180,27 @@ Send me:
             </button>
             <button class="preset-btn" data-prompt="Spotify">
               <strong>"Spotify"</strong>
-              <span>Disambiguation selection</span>
-            </button>
-            <button class="preset-btn" data-prompt="Minecraft">
-              <strong>"Minecraft"</strong>
-              <span>Lookup ratings & price</span>
+              <span>Multi-store disambiguation</span>
             </button>
             <button class="preset-btn" data-prompt="1">
               <strong>Reply "1"</strong>
-              <span>Pick first disambiguation item</span>
+              <span>Pick first option (App Store)</span>
             </button>
-            <button class="preset-btn" data-prompt="Duolingo">
-              <strong>"Duolingo"</strong>
-              <span>Language learning app</span>
+            <button class="preset-btn" data-prompt="3">
+              <strong>Reply "3"</strong>
+              <span>Pick third option (Google Play)</span>
+            </button>
+            <button class="preset-btn" data-prompt="https://play.google.com/store/apps/details?id=com.spotify.music">
+              <strong>Play Store Link 🤖</strong>
+              <span>Direct Google Play URL</span>
+            </button>
+            <button class="preset-btn" data-prompt="https://apps.apple.com/us/app/spotify/id324684580">
+              <strong>App Store Link 🍎</strong>
+              <span>Direct iOS App Store URL</span>
+            </button>
+            <button class="preset-btn" data-prompt="Minecraft">
+              <strong>"Minecraft"</strong>
+              <span>Paid game comparison</span>
             </button>
           </div>
 
